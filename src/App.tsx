@@ -1,10 +1,17 @@
 import styles from './App.module.sass'
 
+import { Container } from './modules/Container/Container'
+import { AddExpense } from './components/AddExpense/AddExpense'
+import { ExpenseCardList } from './modules/ExpenseCardList/ExpenseCardList'
+
 function App() {
 	return (
-		<>
-			<h1 className={styles.title}>Expense note</h1>
-		</>
+		<Container>
+			<main className={styles.main}>
+				<AddExpense />
+				<ExpenseCardList />
+			</main>
+		</Container>
 	)
 }
 

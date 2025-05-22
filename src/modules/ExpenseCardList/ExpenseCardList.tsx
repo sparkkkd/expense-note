@@ -1,0 +1,56 @@
+import type { FC } from 'react'
+import clsx from 'clsx'
+import { useAppSelector } from '../../store/hooks'
+import { AnimatePresence, motion, type Variants } from 'framer-motion'
+
+import { ExpenseCard } from '../../components/ExpenseCard/ExpenseCard'
+
+import styles from './ExpenseCardList.module.sass'
+
+interface ExpenseCardListProps {
+	className?: string
+}
+
+const expenseCardListVariants: Variants = {
+	initial: {
+		opacity: 0,
+		scale: 0.5,
+		transition: {
+			staggerChildren: 0.05,
+			duration: 0.2,
+		},
+	},
+	animate: {
+		opacity: 1,
+		scale: 1,
+	},
+}
+
+export const ExpenseCardList: FC<ExpenseCardListProps> = ({ className }) => {
+	const { expenses } = useAppSelector((state) => state.expensesReducer)
+
+	return (
+		<motion.div
+			className={clsx(styles.list, className)}
+			variants={expenseCardListVariants}
+			initial='initial'
+			animate='animate'
+			exit='exit'
+		>
+			<AnimatePresence>
+				{expenses &&
+					expenses.map((expense) => (
+						<motion.div
+							key={expense.id}
+							initial={{ opacity: 0, scale: 0.5 }}
+							animate={{ opacity: 1, scale: 1, transition: { duration: 0.2 } }}
+							exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+							style={{ width: '32%' }}
+						>
+							<ExpenseCard expense={expense} />
+						</motion.div>
+					))}
+			</AnimatePresence>
+		</motion.div>
+	)
+}
