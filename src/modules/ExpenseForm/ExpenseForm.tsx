@@ -57,7 +57,15 @@ export const ExpenseForm: FC<ExpenseModalProps> = ({
 					...data,
 					category: categories[category],
 					id: expense.id,
-					date,
+					date: date
+						? date
+						: new Date()
+								.toLocaleDateString('ru', {
+									year: 'numeric',
+									month: '2-digit',
+									day: '2-digit',
+								})
+								.replace(/\s/g, '.'),
 				})
 			)
 			reset()
@@ -71,7 +79,15 @@ export const ExpenseForm: FC<ExpenseModalProps> = ({
 					...data,
 					category: categories[category],
 					id: Date.now().toString(),
-					date,
+					date: date
+						? date
+						: new Date()
+								.toLocaleDateString('ru', {
+									year: 'numeric',
+									month: '2-digit',
+									day: '2-digit',
+								})
+								.replace(/\s/g, '.'),
 				})
 			)
 			reset()
