@@ -65,7 +65,13 @@ export const ExpenseCardList: FC<ExpenseCardListProps> = ({ className }) => {
 						</motion.div>
 					))
 				) : (
-					<motion.span layout className={styles.empty} exit={{ opacity: 0 }}>
+					<motion.span
+						layout
+						className={styles.empty}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+					>
 						Ничего не найдено
 					</motion.span>
 				)}

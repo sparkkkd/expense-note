@@ -19,7 +19,7 @@ const initialState: IInitialState = {
 		},
 		{
 			id: '2123214121',
-			name: 'Купить билеты',
+			name: 'Покупка билетов',
 			category: { id: 2, name: 'Транспорт' },
 			amount: 100,
 			date: '26.05.2001',
