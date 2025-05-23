@@ -15,6 +15,7 @@ import type { IExpenseSchema } from './expense.schema'
 
 import { Button, TextInput } from '@gravity-ui/uikit'
 import { UISelect } from '../../components/UISelect/UISelect'
+import { DatePicker } from '@gravity-ui/date-components'
 
 import styles from './ExpenseForm.module.sass'
 import { toast } from 'sonner'
@@ -31,6 +32,7 @@ export const ExpenseForm: FC<ExpenseModalProps> = ({
 	setModalIsOpen,
 }) => {
 	const [category, setCategory] = useState<number>(0)
+	const [date, setDate] = useState<string>('')
 
 	const { categories } = useAppSelector((state) => state.expensesReducer)
 	const dispatch = useAppDispatch()
@@ -55,7 +57,7 @@ export const ExpenseForm: FC<ExpenseModalProps> = ({
 					...data,
 					category: categories[category],
 					id: expense.id,
-					date: new Date(Date.now()),
+					date,
 				})
 			)
 			reset()
@@ -69,7 +71,7 @@ export const ExpenseForm: FC<ExpenseModalProps> = ({
 					...data,
 					category: categories[category],
 					id: Date.now().toString(),
-					date: new Date(Date.now()),
+					date,
 				})
 			)
 			reset()
@@ -79,6 +81,7 @@ export const ExpenseForm: FC<ExpenseModalProps> = ({
 			})
 		}
 	}
+	console.log(date)
 
 	return (
 		<form
@@ -102,6 +105,12 @@ export const ExpenseForm: FC<ExpenseModalProps> = ({
 				errorPlacement='inside'
 			/>
 			<UISelect setCategory={setCategory} />
+			<DatePicker
+				format='DD.MM.YYYY'
+				onUpdate={(value) => {
+					setDate(value?.locale('ru').format('DD.MM.YYYY') as string)
+				}}
+			/>
 			<Button type='submit'>{expense ? 'Редактировать' : 'Добавить'}</Button>
 		</form>
 	)

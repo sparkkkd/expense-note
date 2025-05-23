@@ -5,6 +5,7 @@ interface IInitialState {
 	expenses: IExpense[]
 	filteredExpenses: IExpense[]
 	categories: IExpenseCategory[]
+	limit: number
 }
 
 const initialState: IInitialState = {
@@ -14,14 +15,14 @@ const initialState: IInitialState = {
 			name: 'Покупка продуктов',
 			category: { id: 1, name: 'Продукты / еда' },
 			amount: 100,
-			date: new Date(Date.now()),
+			date: '26.05.2001',
 		},
 		{
 			id: '2123214121',
 			name: 'Купить билеты',
 			category: { id: 2, name: 'Транспорт' },
 			amount: 100,
-			date: new Date(Date.now()),
+			date: '26.05.2001',
 		},
 	],
 	filteredExpenses: [],
@@ -33,6 +34,7 @@ const initialState: IInitialState = {
 		{ id: 4, name: 'Спорт' },
 		{ id: 5, name: 'Другое' },
 	],
+	limit: -1,
 }
 
 const expensesSlice = createSlice({
@@ -62,6 +64,9 @@ const expensesSlice = createSlice({
 				)
 			}
 		},
+		setLimit: (state, action: { payload: number }) => {
+			state.limit = action.payload
+		},
 	},
 })
 
@@ -71,4 +76,5 @@ export const {
 	removeStoreExpense,
 	editStoreExpense,
 	setFilteredExpenses,
+	setLimit,
 } = expensesSlice.actions

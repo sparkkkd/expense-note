@@ -27,7 +27,7 @@ export const ExpenseCard: FC<ExpenseCardProps> = ({ className, expense }) => {
 				<span className={styles.name}>{expense.name}</span>
 				<span className={styles.amount}>{expense.amount}</span>
 				<span className={styles.category}>{expense.category.name}</span>
-				<span className={styles.date}>
+				{/* <span className={styles.date}>
 					{expense.date
 						.toLocaleDateString('ru', {
 							year: 'numeric',
@@ -35,7 +35,8 @@ export const ExpenseCard: FC<ExpenseCardProps> = ({ className, expense }) => {
 							day: '2-digit',
 						})
 						.replace(/\s/g, '.')}
-				</span>
+				</span> */}
+				<span className={styles.date}>{expense.date}</span>
 				<div className={styles.menu}>
 					<DropdownMenu
 						items={[

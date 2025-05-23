@@ -3,7 +3,7 @@ export interface IExpense {
 	name: string
 	category: IExpenseCategory
 	amount: number
-	date: Date
+	date: string
 }
 
 export interface IExpenseCategory {

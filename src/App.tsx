@@ -5,6 +5,8 @@ import { Container } from './modules/Container/Container'
 import { AddExpense } from './components/AddExpense/AddExpense'
 import { ExpenseCardList } from './modules/ExpenseCardList/ExpenseCardList'
 import { Filters } from './modules/Filters/Filters'
+import { AddLimit } from './components/AddLimit/AddLimit'
+import { LimitCounter } from './components/LimitCounter/LimitCounter'
 
 function App() {
 	return (
@@ -23,7 +25,13 @@ function App() {
 			/>
 			<Container>
 				<main className={styles.main}>
-					<AddExpense />
+					<div className={styles.actions}>
+						<AddExpense />
+						<AddLimit />
+					</div>
+
+					<LimitCounter />
+
 					<Filters />
 					<ExpenseCardList />
 				</main>
