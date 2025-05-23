@@ -17,6 +17,7 @@ import { Button, TextInput } from '@gravity-ui/uikit'
 import { UISelect } from '../../components/UISelect/UISelect'
 
 import styles from './ExpenseForm.module.sass'
+import { toast } from 'sonner'
 
 interface ExpenseModalProps {
 	className?: string
@@ -59,6 +60,9 @@ export const ExpenseForm: FC<ExpenseModalProps> = ({
 			)
 			reset()
 			setModalIsOpen(false)
+			toast.success('Готово', {
+				description: `${expense.name} успешно отредактирована`,
+			})
 		} else {
 			dispatch(
 				addStoreExpense({
@@ -70,6 +74,9 @@ export const ExpenseForm: FC<ExpenseModalProps> = ({
 			)
 			reset()
 			setModalIsOpen(false)
+			toast.success('Готово', {
+				description: `${data.name} успешно добавлена`,
+			})
 		}
 	}
 
