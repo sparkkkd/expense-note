@@ -59,12 +59,15 @@ export const ExpenseCardList: FC<ExpenseCardListProps> = ({ className }) => {
 							}}
 							exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
 							style={{ width: '32%' }}
+							layout
 						>
 							<ExpenseCard expense={expense} />
 						</motion.div>
 					))
 				) : (
-					<span className={styles.empty}>Ничего не найдено</span>
+					<motion.span layout className={styles.empty} exit={{ opacity: 0 }}>
+						Ничего не найдено
+					</motion.span>
 				)}
 			</AnimatePresence>
 		</motion.div>
